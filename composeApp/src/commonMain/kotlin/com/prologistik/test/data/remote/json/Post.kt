@@ -8,4 +8,6 @@ data class Post(
     val id: Int,
     val title: String,
     val userId: Int
-)
+){
+    override fun toString() = title
+}

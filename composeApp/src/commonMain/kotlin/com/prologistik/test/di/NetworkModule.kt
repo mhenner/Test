@@ -17,6 +17,7 @@ val networkModule = module {
                 json(Json {
                     prettyPrint = false
                     isLenient = true
+                    ignoreUnknownKeys = true
                 })
             }
             expectSuccess = true

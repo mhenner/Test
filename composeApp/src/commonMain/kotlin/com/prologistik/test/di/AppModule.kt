@@ -1,3 +1,10 @@
 package com.prologistik.test.di
 
-fun appModule() = listOf(viewModelModule, networkModule, serviceModule, repositoryeModule)
+fun appModule() = listOf(
+    platformModule,
+    screenModelModule,
+    databaseModule,
+    networkModule,
+    serviceModule,
+    repositoryModule,
+)

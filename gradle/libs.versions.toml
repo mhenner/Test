@@ -1,11 +1,11 @@
 [versions]
-agp = "8.5.2"
-android-compileSdk = "34"
+agp = "8.6.0"
+android-compileSdk = "35"
 android-minSdk = "24"
-android-targetSdk = "34"
+android-targetSdk = "35"
 androidx-activityCompose = "1.9.1"
 androidx-lifecycle = "2.8.0"
-compose-plugin = "1.6.11"
+compose-plugin = "1.7.0-beta01"
 kotlin = "2.0.10"
 kotlinx-coroutines = "1.8.1"
 kotlinx-datetime = "0.6.1"
@@ -18,6 +18,10 @@ koin-bom = "4.0.0-RC1"
 voyager = "1.1.0-beta02"
 ktor = "2.3.12"
 ktor-boost = "1.0.0"
+accompanist-permissions = "0.35.2-beta"
+coil = "3.0.0-alpha10"
+compass = "1.2.2"
+sain = "2.0.6"
 
 [libraries]
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activityCompose" }
@@ -30,9 +34,11 @@ kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-seria
 sqlite-bundled = { group = "androidx.sqlite", name = "sqlite-bundled", version.ref = "sqlite" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-runtime-android = { group = "androidx.room", name = "room-runtime-android", version.ref = "room" }
 skie-annotations = { group = "co.touchlab.skie", name = "configuration-annotations", version.ref = "skie" }
 koin-bom = { group = "io.insert-koin", name = "koin-bom", version.ref = "koin-bom" }
 koin-core = { group = "io.insert-koin", name = "koin-core" }
+koin-android = { group = "io.insert-koin", name = "koin-android" }
 voyager-navigator = { group = "cafe.adriel.voyager", name = "voyager-navigator", version.ref = "voyager" }
 voyager-screenmodel = { group = "cafe.adriel.voyager", name = "voyager-screenmodel", version.ref = "voyager" }
 voyager-transitions = { group = "cafe.adriel.voyager", name = "voyager-transitions", version.ref = "voyager" }
@@ -45,6 +51,13 @@ ktor-client-darwin = { group = "io.ktor", name = "ktor-client-darwin", version.r
 ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-boost = { group = "io.github.androidpoet", name = "ktor-boost", version.ref = "ktor-boost" }
+accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist-permissions" }
+coil = { group = "io.coil-kt.coil3", name = "coil", version.ref = "coil" }
+coil-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
+coil-compose-core = { group = "io.coil-kt.coil3", name = "coil-compose-core", version.ref = "coil" }
+compass-geolocation = { group = "dev.jordond.compass", name = "geolocation", version.ref = "compass" }
+compass-geolocation-mobile = { group = "dev.jordond.compass", name = "geolocation-mobile", version.ref = "compass" }
+sain = { group = "io.github.joelkanyi", name = "sain", version.ref = "sain" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

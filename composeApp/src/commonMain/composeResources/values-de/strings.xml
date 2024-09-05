@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Test</string>
+    <string name="permission_required">Erlaubnis erforderlich</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="settings">Einstellungen</string>
+    <string name="photo_permission_text">Bitte erteile der App die Berechtigung Fotos zu machen. Du kannst die Berechtigungen in deinen Geräteeinstellungen verwalten.</string>
 </resources>

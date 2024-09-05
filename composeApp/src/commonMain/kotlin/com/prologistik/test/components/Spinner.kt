@@ -20,7 +20,7 @@ import androidx.compose.ui.Modifier
 fun <T> Spinner(
     label: String,
     items: List<T>,
-    selectedItem: T = items.first(),
+    selectedItem: T? = null,
     onItemSelected: (T) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -29,11 +29,15 @@ fun <T> Spinner(
     ExposedDropdownMenuBox(
         modifier = modifier,
         expanded = expanded,
-        onExpandedChange = { expanded = !expanded }) {
+        onExpandedChange = {
+            if (items.isNotEmpty()) {
+                expanded = !expanded
+            }
+        }) {
         TextField(
             modifier = Modifier.fillMaxWidth().menuAnchor(),
             readOnly = true,
-            value = selectedItem.toString(),
+            value = selectedItem?.toString().orEmpty(),
             onValueChange = {},
             label = { Text(text = label) },
             trailingIcon = {
@@ -43,7 +47,10 @@ fun <T> Spinner(
             },
             colors = ExposedDropdownMenuDefaults.textFieldColors(),
         )
-        ExposedDropdownMenu(modifier = Modifier.fillMaxWidth(), expanded = expanded, onDismissRequest = { expanded = false }) {
+        ExposedDropdownMenu(
+            modifier = Modifier.fillMaxWidth(),
+            expanded = expanded,
+            onDismissRequest = { expanded = false }) {
             items.forEach { item ->
                 DropdownMenuItem(
                     text = { Text(text = item.toString()) },

@@ -1,37 +1,19 @@
-
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinxSerialization)
     alias(libs.plugins.skie)
     alias(libs.plugins.ksp)
-//    alias(libs.plugins.room)
+    alias(libs.plugins.room)
+    alias(libs.plugins.androidApplication)
 }
 
 kotlin {
-//    @OptIn(ExperimentalWasmDsl::class)
-//    wasmJs {
-//        moduleName = "composeApp"
-//        browser {
-//            val projectDirPath = project.projectDir.path
-//            commonWebpackConfig {
-//                outputFileName = "composeApp.js"
-//                devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
-//                    static = (static ?: mutableListOf()).apply {
-//                        add(projectDirPath)
-//                    }
-//                }
-//            }
-//        }
-//        binaries.executable()
-//    }
-
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
@@ -60,15 +42,17 @@ kotlin {
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
+            implementation(compose.materialIconsExtended)
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel.compose)
+            implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.kotlinx.datetime)
             implementation(libs.kotlinx.serialization)
             implementation(libs.kotlinx.coroutines.core)
-//                implementation(libs.room.runtime)
-//                implementation(libs.sqlite.bundled)
+            implementation(libs.room.runtime)
+            implementation(libs.sqlite.bundled)
             implementation(project.dependencies.platform(libs.koin.bom))
             implementation(libs.koin.core)
             implementation(libs.voyager.navigator)
@@ -81,12 +65,21 @@ kotlin {
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.ktor.boost)
+            implementation(libs.coil)
+            implementation(libs.coil.compose)
+            implementation(libs.coil.compose.core)
+            implementation(libs.compass.geolocation)
+            implementation(libs.compass.geolocation.mobile)
+            implementation(libs.sain)
         }
 
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.ktor.client.okhttp)
+            implementation(libs.room.runtime.android)
+            implementation(libs.koin.android)
+            implementation(libs.accompanist.permissions)
         }
 
         iosMain.dependencies {
@@ -150,13 +143,20 @@ compose.desktop {
     }
 }
 
-//room {
-//    schemaDirectory("$projectDir/schemas")
-//}
+dependencies {
+    add("kspAndroid", libs.room.compiler)
+    add("kspIosX64", libs.room.compiler)
+    add("kspIosArm64", libs.room.compiler)
+    add("kspIosSimulatorArm64", libs.room.compiler)
+//    add("kspCommonMainMetadata", libs.room.compiler)
+}
 
-//dependencies {
-//    add("kspAndroid", libs.room.compiler)
-//    add("kspIosSimulatorArm64", libs.room.compiler)
-//    add("kspIosX64", libs.room.compiler)
-//    add("kspIosArm64", libs.room.compiler)
+room {
+    schemaDirectory("$projectDir/schemas")
+}
+
+//tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>>().configureEach {
+//    if (name != "kspCommonMainKotlinMetadata") {
+//        dependsOn("kspCommonMainKotlinMetadata")
+//    }
 //}
